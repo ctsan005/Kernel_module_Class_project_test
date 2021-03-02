@@ -1,3 +1,5 @@
+// CS202 Project: Chi Chiu Tsang, 861265376
+
 //////////////////////////////////////////////////////////////////////
 //                     University of California, Riverside
 //
@@ -47,6 +49,9 @@
 
 extern struct miscdevice resource_container_dev;
 
+struct mutex mlock;
+struct mutex memorylock;
+
 int resource_container_init(void)
 {
     int ret, i;
@@ -57,6 +62,8 @@ int resource_container_init(void)
         return ret;
     }
     printk("Resource container kernel module installed\n");
+    mutex_init(&mlock);
+    mutex_init(&memorylock);
     return ret;
 }
 
